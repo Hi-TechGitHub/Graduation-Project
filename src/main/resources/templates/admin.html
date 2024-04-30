@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin's Home Page</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:fragment="navbar">
+    <nav class="navbar">
+        <a href="index"> <img src="https://le8ore.files.wordpress.com/2016/12/th.jpg" width="100"></a>
+        <h1 class="logo">Admin's Home Page</h1>
+        <ul class="nav-links">
+            <li sec:authorize="!isAuthenticated()" class="nav-item"><a href="/login">Login</a></li>
+            <li class="nav-item"><a href="/">Home</a></li>
+            <li class="nav-item"><a href="/getDB">DB</a></li></ul>
+    </nav>
+</div>
+</br>
+<h1>Добавление объекта в базу данных</h1> </br>
+<form action="/create" method="POST">
+    <label for="name">Название:</label>
+    <input type="text" id="name" name="name" required>
+    <br/>
+    <label for="description">Описание:</label>
+    <input type="text" id="description" name="description" required>
+    <br/>
+    <input type="submit" value="Добавить">
+</form>
+</br>
+<h1>Удаление объекта из базы данных</h1> </br>
+<form action="/delete" method="POST">
+    <label for="id">id:</label>
+    <input type="text" id="id" name="id" required>
+    <br/>
+    <input type="submit" value="Удалить">
+</form>
+<div th:fragment="main-text"></div>
+<div th:fragment="footer"></div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Show DB</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:fragment="navbar">
+    <nav class="navbar">
+        <a href="index"> <img src="https://le8ore.files.wordpress.com/2016/12/th.jpg" width="100"></a>
+        <h1 class="logo">Show DB</h1>
+        <ul class="nav-links">
+            <li sec:authorize="!isAuthenticated()" class="nav-item"><a href="/login">Login</a></li>
+            <li class="nav-item"><a href="/">Home</a></li>
+            <li sec:authorize="hasRole('ADMIN')" class="nav-item"><a href="/admin">Admin</a></li>
+        </ul>
+    </nav>
+    </br>
+    <h1>All products</h1></br>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="products : ${products}">
+            <td th:text="${products.id}"></td>
+            <td th:text="${products.name}"></td>
+            <td th:text="${products.description}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
